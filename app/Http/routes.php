@@ -30,6 +30,10 @@ Route::group(['middleware' => 'auth.basic'], function ()
     Route::resource('postres', 'PostresController');
     Route::resource('tamales', 'TamalesController');
     Route::resource('temporada','TemporadaController');
+    Route::resource('agregar','AgregarController',['only' => ['show','store','index']]);
+    Route::resource('agregaradmin','AgregarAdminController');
+    Route::resource('top','TopController');
+    Route::resource('buscar','BuscarController');
 
 });
 

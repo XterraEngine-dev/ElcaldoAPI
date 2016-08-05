@@ -18,6 +18,8 @@ class VerifyCsrfToken extends BaseVerifier
         'otras*',
         'postres*',
         'tamales*',
-        'temporada*'
+        'temporada*',
+        'agregar*',
+        'top*',
     ];
 }

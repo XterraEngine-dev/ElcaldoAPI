@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Caldos;
+use App\AgregarAdmin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class CaldosController extends Controller
+class AgregarAdminController extends Controller
 {
 
     public function index()
     {
-        $todo = Caldos::all();
-        return response()->json(['caldos' => $todo ],201);
+        $todo = AgregarAdmin::all();
+        return response()->json(['agregar' => $todo ],201);
     }
 
     public function store(Request $request)
     {
 
-        $caldos = new Caldos;
+        $caldos = new Agregar;
         $caldos->nombre = $request->input('nombre');
         $caldos->ingredientes = $request->input('ingredientes');
         $caldos->preparacion = $request ->input('preparacion');
@@ -27,23 +27,23 @@ class CaldosController extends Controller
         $caldos->imagen = $request ->input('imagen');
         $caldos->save();
 
-        return response()->json(['caldos' => 'caldo insertado'],201);
+        return response()->json(['agregar' => 'agregar insertado'],201);
 
     }
 
 
     public function show($id)
     {
-        $caldoid = Caldos::find($id);
+        $caldoid = AgregarAdmin::find($id);
 
-        return response()->json(['caldos' => $caldoid],200);
+        return response()->json(['agregar' => $caldoid],200);
     }
 
 
     public function destroy($id)
     {
-        Caldos::destroy($id);
-        return response()->json(['caldos' => 'caldo eliminado'],200);
+        AgregarAdmin::destroy($id);
+        return response()->json(['agregar' => 'agregar eliminado'],200);
     }
 
 
@@ -52,10 +52,10 @@ class CaldosController extends Controller
 
 
         $metodo = $request->method();
-        $caldos = Caldos::find($id);
+        $caldos = AgregarAdmin::find($id);
         if(!$caldos)
         {
-            return response()->json(['caldo' => 'No se encuentra este caldos', 'codigo' => 404],404);
+            return response()->json(['agregar' => 'No se encuentra este agregar', 'codigo' => 404],404);
         }
         if($metodo === 'PATCH')
         {
@@ -98,7 +98,7 @@ class CaldosController extends Controller
             /**
              * region
              */
-             $region = $request->input('region');
+            $region = $request->input('region');
             if($region !=null && $region != ''){
 
                 $caldos->region = $region;
@@ -122,9 +122,9 @@ class CaldosController extends Controller
             if($bandera)
             {
                 $caldos->save();
-                return response()->json(['caldos' => 'caldo editado'],200);
+                return response()->json(['agregar' => 'agregar editado'],200);
             }
-            return response()->json(['caldos' => 'No se modificó ningun caldos'],200);
+            return response()->json(['agregar' => 'No se modificó ningun caldos'],200);
         }
         $nombre = $request->input('nombre');
         $ingredientes = $request->input('ingredientes');
@@ -133,7 +133,7 @@ class CaldosController extends Controller
         $imagen = $request->input('imagen');
         if(!$nombre || !$ingredientes || $preparacion || $region || $imagen)
         {
-            return response()->json(['caldos' => 'No se pudieron procesar los valores', 'codigo' => 422],422);
+            return response()->json(['agregar' => 'No se pudieron procesar los valores', 'codigo' => 422],422);
         }
         $caldos->nombre = $nombre;
         $caldos->ingredientes = $ingredientes;
@@ -143,13 +143,9 @@ class CaldosController extends Controller
         $caldos->save();
 
 
-        return response()->json(['caldos' => 'editado'],200);
+        return response()->json(['agregar' => 'editado'],200);
 
 
 
     }
-
-
-
-
 }
